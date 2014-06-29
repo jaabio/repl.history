@@ -9,7 +9,7 @@ require('../')(repl, process.env.HOME + '/.node_history');
 repl.context.require.uncache = function (moduleName) {
     // Run over the cache looking for the files
     // loaded by the specified module name
-    myrepl.context.require.searchCache(moduleName, function (mod) {
+    repl.context.require.searchCache(moduleName, function (mod) {
         delete require.cache[mod.id];
     });
 };
@@ -43,6 +43,6 @@ repl.context.require.searchCache = function (moduleName, callback) {
  * Load a module, clearing it from the cache if necessary.
  */
 repl.context.require.reload = function(moduleName) {
-    myrepl.context.require.uncache(moduleName);
-    return myrepl.context.require(moduleName);
+    repl.context.require.uncache(moduleName);
+    return repl.context.require(moduleName);
 };
